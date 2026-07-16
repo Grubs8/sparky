@@ -1,5 +1,5 @@
 build:
-	g++ -Wall -std=c++17 -I"./libs/" src/*.cpp -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -llua5.3  -o sparky;
+	g++ -Wall -std=c++17 -I"./libs/" src/*.cpp `sdl2-config --libs --cflags` -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -llua5.3 -o sparky;
 run:
 	./sparky 
 clean:
