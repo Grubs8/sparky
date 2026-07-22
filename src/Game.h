@@ -8,7 +8,7 @@ class Game {
 		bool isRunning;
 		SDL_Window* window;
 		SDL_Renderer* renderer;
-	
+
 	public:
 		Game();
 		~Game();
@@ -18,6 +18,9 @@ class Game {
 		void Update();
 		void Render();
 		void Destroy();
+
+        int windowWidth;
+        int windowHeight;
 
 
 

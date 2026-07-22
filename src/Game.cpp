@@ -14,14 +14,18 @@ Game:: ~Game() {
 void Game::Initialize() {
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		std::cerr << "Error initializing SDL." << std::endl;
+  }
 		return;
-	}
-	window = SDL_CreateWindow(
-			NULL, 
-			SDL_WINDOWPOS_CENTERED, 
+            SDL_DisplayMode displayMode;
+            SDL_GetCurrentDisplayMode( 0, &displayMode);
+            windowWidth = displayMode.w;
+            windowHeight= displayMode.h;
+            window = SDL_CreateWindow(
+			NULL,
 			SDL_WINDOWPOS_CENTERED,
-			800,
-			600,
+			SDL_WINDOWPOS_CENTERED,
+			windowWidth,
+			windowHeight,
 			SDL_WINDOW_BORDERLESS);
 	if (!window) {
 		std::cerr << "Error creating SDL window." << std::endl;
@@ -55,7 +59,7 @@ void Game::ProcessInput() {
 					isRunning = false;
 				break;
 				}
-	
+
 		}
 	}
 }
@@ -71,7 +75,7 @@ void Game::Render() {
 	SDL_RenderPresent(renderer);
 }
 
-void Game::Destroy(){ 
+void Game::Destroy(){
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
